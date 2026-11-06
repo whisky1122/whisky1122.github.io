@@ -1,161 +1,345 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="theme-color" content="#080d14">
-  <meta name="description" content="Spencer Veen: IT professional, computer science student, and builder of software, security projects, and Emberforge.">
-  <title>Spencer Veen — IT, Code & Creative Projects</title>
-  <style>
-    :root {color-scheme:dark;--bg:#080d14;--panel:#111924;--panel2:#161f2a;--text:#ecf0f4;--muted:#a2afbf;--line:#263340;--gold:#eac28c;--green:#a7e1c1;--sans:Inter,ui-sans-serif,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif}
-    * {box-sizing:border-box}
-    html {scroll-behavior:smooth;scroll-padding-top:100px}
-    body {margin:0;color:var(--text);background:var(--bg);font-family:var(--sans);line-height:1.55;overflow-x:hidden}
-    body:before{content:"";position:fixed;inset:0;z-index:-1;pointer-events:none;background:radial-gradient(circle at 83% 10%,#c68c4820 0,transparent 32%),radial-gradient(circle at 15% 50%,#1d6b6523 0,transparent 32%),linear-gradient(90deg,#ffffff04 1px,transparent 1px),linear-gradient(#ffffff04 1px,transparent 1px);background-size:auto,auto,44px 44px,44px 44px}
-    a{color:inherit;text-decoration:none}
-    button{font:inherit} a:focus-visible,button:focus-visible{outline:2px solid var(--gold);outline-offset:4px}
-    .wrap{width:min(1160px,calc(100% - 48px));margin-inline:auto}
-    .topbar{position:sticky;top:0;z-index:40;background:#080d14e8;backdrop-filter:blur(15px);border-bottom:1px solid #ffffff14}
-    .topbar-inner{display:flex;align-items:center;gap:35px;min-height:74px}
-    .brand{font-weight:900;font-size:22px;letter-spacing:-1.4px;white-space:nowrap}.brand b{color:var(--gold)}
-    .nav{display:flex;align-items:center;gap:28px;margin-left:auto}.nav a{font-size:13px;color:#b6c2cf;transition:color .2s}.nav a:hover{color:#fff}
-    .menu-toggle{display:none;margin-left:auto;background:none;border:1px solid var(--line);padding:8px 12px;color:#fff;border-radius:8px;cursor:pointer}
-    .mini{font-size:11px;font-weight:800;letter-spacing:.17em;text-transform:uppercase}
-    .accent{color:var(--gold)}.green{color:var(--green)}
-    .hero{padding:92px 0 118px;display:grid;grid-template-columns:1.1fr .9fr;gap:55px;align-items:center;min-height:650px}
-    .eyebrow{display:inline-flex;align-items:center;gap:9px;color:var(--gold)}.eyebrow:before{content:"";height:5px;width:5px;border-radius:100%;background:var(--gold);box-shadow:0 0 12px var(--gold)}
-    h1,h2,h3,p{margin-top:0}h1{font-size:clamp(50px,6.2vw,92px);letter-spacing:-.077em;line-height:1.035;margin:25px 0 25px;font-weight:850}
-    h1 .outline{color:#f1f4f8}h1 .italic{font-family:Georgia,serif;font-style:italic;color:var(--gold);letter-spacing:-.055em;font-weight:500}
-    .intro{font-size:17px;color:#b3bdc9;max-width:540px;line-height:1.75}
-    .hero-actions{display:flex;flex-wrap:wrap;gap:12px;margin-top:32px}
-    .btn{display:inline-flex;align-items:center;justify-content:center;gap:12px;background:var(--gold);color:#12151a;font-weight:800;font-size:13px;letter-spacing:.01em;min-height:48px;padding:0 21px;border-radius:8px;transition:transform .15s,filter .15s}
-    .btn:hover{transform:translateY(-2px);filter:brightness(1.08)}.btn-secondary{color:#e5eaf0;border:1px solid #45515e;background:#141d28}
-    .code-art{border:1px solid #ffffff24;border-radius:18px;background:linear-gradient(145deg,#17222e 0%,#101720 65%,#0e1520 100%);min-height:400px;position:relative;overflow:hidden;box-shadow:0 35px 90px #0007,0 0 70px #c98c3213}
-    .code-art:before{content:"";position:absolute;inset:0;background:repeating-linear-gradient(0deg,transparent,transparent 17px,#ffffff04 18px);pointer-events:none}
-    .panel-head{border-bottom:1px solid #ffffff16;padding:15px 18px;display:flex;justify-content:space-between;align-items:center;color:#94a4b4;font-size:12px}
-    .dots{display:flex;gap:6px}.dots i{display:block;width:8px;height:8px;border-radius:50%;background:#ad8660}.dots i:nth-child(2){background:#6f8a8c}.dots i:nth-child(3){background:#8caa8b}
-    .terminal{font-family:ui-monospace,SFMono-Regular,Consolas,monospace;font-size:13px;line-height:2;padding:38px 33px;color:#a6b6c9}
-    .terminal strong{color:var(--gold);font-weight:500}.terminal em{color:#aee2c7;font-style:normal}.terminal .comment{color:#74869a}.terminal .indent{padding-left:22px}
-    .terminal .cursor{display:inline-block;width:8px;height:15px;background:#ebc38e;vertical-align:middle;animation:blink 1s steps(2) infinite}@keyframes blink{50%{opacity:0}}
-    .signal{position:absolute;right:24px;bottom:23px;display:flex;align-items:center;gap:8px;color:#a7e1c1;font-size:11px}.signal:before{content:"";width:8px;height:8px;border-radius:50%;background:#83deaf;box-shadow:0 0 18px #83deaf}
-    .statline{border-top:1px solid var(--line);border-bottom:1px solid var(--line);padding:18px 0;display:flex;gap:28px;justify-content:space-between;flex-wrap:wrap;color:#8394a7;font-size:12px;letter-spacing:.04em;text-transform:uppercase}.statline span b{color:#dae2e9;font-weight:600}
-    section{padding:105px 0} .section-head{display:flex;align-items:end;justify-content:space-between;gap:30px;margin-bottom:38px}.section-head h2{font-size:clamp(36px,4.1vw,57px);line-height:1.05;letter-spacing:-.06em;margin:16px 0 0}.section-head p{max-width:410px;margin:0;color:#9aabbc;font-size:14px}
-    .forge-art:before,.forge-art:after{content:"";position:absolute;left:0;right:0;bottom:0;background:#0c121c;clip-path:polygon(0 100%,0 70%,9% 70%,9% 43%,15% 43%,15% 69%,23% 69%,23% 30%,30% 30%,30% 58%,37% 58%,37% 40%,45% 40%,45% 63%,55% 63%,55% 22%,62% 22%,62% 69%,72% 69%,72% 36%,79% 36%,79% 71%,91% 71%,91% 48%,97% 48%,97% 75%,100% 75%,100% 100%);height:150px;z-index:1}.forge-art:after{transform:translateY(20px) scaleX(-1);opacity:.4;background:#0b1420}
-    .cards{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:16px;margin-top:18px}.project{min-height:230px;border:1px solid var(--line);border-radius:14px;background:linear-gradient(135deg,#162029,#111720);padding:26px;display:flex;flex-direction:column;align-items:flex-start;transition:border-color .2s,transform .2s}.project:hover{border-color:#7f9c9b;transform:translateY(-2px)}.project h3{font-size:21px;letter-spacing:-.04em;line-height:1.2;margin:12px 0}.project p{font-size:13px;color:#9eacba;line-height:1.7}.project .bottom{margin-top:auto;color:var(--green);font-size:12px;font-weight:750}
-    .split-intro{display:grid;grid-template-columns:1fr 1fr;gap:50px;align-items:center;border-top:1px solid var(--line);border-bottom:1px solid var(--line);padding:70px 0}.split-intro h2{font-size:clamp(36px,4vw,53px);letter-spacing:-.06em;line-height:1.12;margin-bottom:0}.split-intro p{font-size:15px;color:#aebdca;margin-bottom:16px}.skills{display:flex;flex-wrap:wrap;gap:10px}.skills span{background:#15212b;border:1px solid #334451;color:#c7d5df;padding:10px 14px;font-size:12px;border-radius:8px}
-    .cta{display:flex;justify-content:space-between;align-items:center;gap:40px;background:linear-gradient(110deg,#1d252a,#23261e);border:1px solid #586150;border-radius:16px;padding:42px 50px}.cta h2{margin:10px 0 7px;font-size:35px;letter-spacing:-.05em}.cta p{color:#b7beb9;font-size:14px;margin:0}
-    footer{border-top:1px solid var(--line);padding:28px 0 45px;color:#9eafbf;font-size:12px}.footer-inner{display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:18px}.footer-links{display:flex;gap:20px}.footer-links a:hover{color:#fff}
-    #owner-tools{display:none;border-top:1px solid #ffffff24;background:#112520;margin-top:30px;padding:16px 0;color:#c9e8d6;font-size:13px}#owner-tools strong{margin-right:18px}#owner-tools a{margin-right:18px;text-decoration:underline;text-underline-offset:3px}
-    .category-grid{grid-template-columns:repeat(2,minmax(0,1fr))}.category-card{min-height:305px;border-color:#64503c;background:linear-gradient(135deg,#2c251f,#18242b 60%,#14262b)}.category-card.independent{border-color:#386055;background:linear-gradient(135deg,#16292a,#131f29 70%)}.category-card h3{font-size:clamp(27px,3vw,38px);margin:22px 0 13px}.category-card .bottom{margin-top:auto}.category-grid .category-card:hover{border-color:var(--gold)}
-    @media(max-width:900px){.hero{grid-template-columns:1fr;min-height:auto;padding:70px 0 82px}.code-art{min-height:355px}.cards{grid-template-columns:repeat(2,1fr)}.section-head{display:block}.section-head p{margin-top:18px}.split-intro{gap:25px}.nav{gap:16px}}
-    @media(max-width:740px){.topbar-inner{min-height:66px;flex-wrap:wrap}.menu-toggle{display:block}.nav{display:none;flex-basis:100%;flex-direction:column;align-items:stretch;margin:0;padding:0 0 18px;gap:6px}.nav.open{display:flex}.nav a{padding:11px 5px;font-size:14px}}
-    @media(max-width:640px){.wrap{width:min(100% - 34px,1160px)}.topbar-inner{min-height:66px;flex-wrap:wrap}.menu-toggle{display:block}.nav{display:none;flex-basis:100%;flex-direction:column;align-items:stretch;margin:0;padding:0 0 18px;gap:6px}.nav.open{display:flex}.nav a{padding:11px 5px;font-size:14px}.nav .nav-game{text-align:center}.hero{gap:40px;padding:64px 0 72px}h1{font-size:clamp(48px,13vw,70px)}.intro{font-size:15px}.code-art{min-height:330px}.terminal{padding:30px 19px;font-size:11px}section{padding:76px 0}.section-head h2{font-size:39px}.cards{grid-template-columns:1fr}.split-intro{grid-template-columns:1fr;padding:52px 0}.cta{display:block;padding:33px 26px}.cta .btn{margin-top:24px}.statline{gap:12px}.statline span{font-size:10px}}
-    @media(max-width:640px){.category-grid{grid-template-columns:1fr}}
-    @media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}*,*:before,*:after{animation:none!important;transition:none!important}}
-  </style>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>KinElora - Offline Family Intelligence App for Windows</title>
+<meta name="description" content="KinElora is an offline family intelligence app for Windows with an interactive family tree, relationships, health risks, numerology, timeline, evidence sources, and 14 languages.">
+<meta name="keywords" content="desktop-app, family-tree, flask, genealogy, i18n, numerology, offline-first, portable, pywebview, sqlite, Windows, family intelligence, KinElora">
+<meta name="author" content="KinElora">
+<meta property="og:title" content="KinElora - Offline Family Intelligence App for Windows">
+<meta property="og:description" content="Explore family trees, relationships, health risks, numerology, timeline, and evidence sources offline. Available in 14 languages.">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://github.com/whisky1122/kinelora-family-intelligence">
+<meta name="twitter:card" content="summary_large_image">
+<style>
+  :root {
+    --page-bg: #f7f5f2;
+    --card-bg: #ffffff;
+    --text: #222222;
+    --muted: #5f5f5f;
+    --accent: #1f6f6b;
+    --border: #e6e1da;
+  }
+  * {
+    box-sizing: border-box;
+  }
+  body {
+    margin: 0;
+    font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Arial, sans-serif;
+    background: var(--page-bg);
+    color: var(--text);
+    line-height: 1.7;
+  }
+  main {
+    max-width: 920px;
+    margin: 0 auto;
+    padding: 28px 20px 60px;
+  }
+  h1 {
+    font-size: clamp(2rem, 5vw, 2.85rem);
+    line-height: 1.18;
+    letter-spacing: -0.03em;
+    margin: 0 0 14px;
+  }
+  h2 {
+    font-size: clamp(1.35rem, 3vw, 1.75rem);
+    line-height: 1.25;
+    margin: 42px 0 12px;
+    padding-bottom: 8px;
+    border-bottom: 1px solid var(--border);
+  }
+  p {
+    margin: 0 0 16px;
+    font-size: 1.03rem;
+  }
+  .lead {
+    font-size: 1.16rem;
+    color: var(--muted);
+    max-width: 760px;
+  }
+  ul, ol {
+    padding-left: 22px;
+    margin: 0 0 18px;
+  }
+  li {
+    margin: 8px 0;
+  }
+  a {
+    color: var(--accent);
+    font-weight: 600;
+  }
+  .button-primary {
+    display: inline-block;
+    text-decoration: none;
+    font-weight: 800;
+    font-size: 1.12rem;
+    padding: 16px 28px;
+    border-radius: 14px;
+    color: #1a1a1a;
+    background: linear-gradient(135deg, #ff8a65 0%, #ffd166 35%, #7bdff2 70%, #b2f7ef 100%);
+    box-shadow: 0 12px 28px rgba(31, 111, 107, 0.16);
+    transition: transform 160ms ease, box-shadow 160ms ease;
+  }
+  .button-primary:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 16px 34px rgba(31, 111, 107, 0.22);
+  }
+  .top-badge-wrap {
+    margin: 24px 0 34px;
+  }
+  .section-card {
+    background: var(--card-bg);
+    border: 1px solid var(--border);
+    border-radius: 18px;
+    padding: 22px 24px;
+    box-shadow: 0 8px 22px rgba(0, 0, 0, 0.045);
+    margin: 18px 0;
+  }
+  .download-line {
+    background: #eef8f6;
+    border: 1px solid #cfe8e4;
+    border-radius: 16px;
+    padding: 18px 20px;
+    margin: 18px 0;
+    box-shadow: 0 6px 18px rgba(31, 111, 107, 0.08);
+  }
+  .download-line a {
+    font-weight: 800;
+  }
+  .faq-item {
+    margin-bottom: 18px;
+  }
+  .faq-item strong {
+    display: block;
+    margin-bottom: 4px;
+  }
+  @media (max-width: 640px) {
+    main {
+      padding: 22px 16px 46px;
+    }
+    .button-primary {
+      display: block;
+      text-align: center;
+      padding: 17px 18px;
+    }
+    .section-card,
+    .download-line {
+      padding: 18px 16px;
+    }
+  }
+</style>
+</head<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>KinElora - Offline Family Intelligence App for Windows</title>
+<meta name="description" content="KinElora is an offline family intelligence app for Windows with an interactive family tree, relationships, health risks, numerology, timeline, evidence sources, and 14 languages.">
+<meta name="keywords" content="desktop-app, family-tree, flask, genealogy, i18n, numerology, offline-first, portable, pywebview, sqlite, Windows, family intelligence, KinElora">
+<meta name="author" content="KinElora">
+<meta name="robots" content="index, follow">
+<meta property="og:title" content="KinElora - Offline Family Intelligence App for Windows">
+<meta property="og:description" content="Explore family trees, relationships, health risks, numerology, timeline, and evidence sources offline. Available in 14 languages.">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://github.com/whisky1122/kinelora-family-intelligence">
+<meta name="twitter:card" content="summary_large_image">
+<style>
+  :root {
+    --page-bg: #f7f5f2;
+    --card-bg: #ffffff;
+    --text: #222222;
+    --muted: #5f5f5f;
+    --accent: #1f6f6b;
+    --border: #e6e1da;
+  }
+  * {
+    box-sizing: border-box;
+  }
+  body {
+    margin: 0;
+    font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Arial, sans-serif;
+    background: var(--page-bg);
+    color: var(--text);
+    line-height: 1.7;
+  }
+  main {
+    max-width: 920px;
+    margin: 0 auto;
+    padding: 28px 20px 60px;
+  }
+  h1 {
+    font-size: clamp(2rem, 5vw, 2.85rem);
+    line-height: 1.18;
+    letter-spacing: -0.03em;
+    margin: 0 0 14px;
+  }
+  h2 {
+    font-size: clamp(1.35rem, 3vw, 1.75rem);
+    line-height: 1.25;
+    margin: 42px 0 12px;
+    padding-bottom: 8px;
+    border-bottom: 1px solid var(--border);
+  }
+  p {
+    margin: 0 0 16px;
+    font-size: 1.03rem;
+  }
+  .lead {
+    font-size: 1.16rem;
+    color: var(--muted);
+    max-width: 760px;
+  }
+  ul, ol {
+    padding-left: 22px;
+    margin: 0 0 18px;
+  }
+  li {
+    margin: 8px 0;
+  }
+  a {
+    color: var(--accent);
+    font-weight: 600;
+  }
+  .button-primary {
+    display: inline-block;
+    text-decoration: none;
+    font-weight: 800;
+    font-size: 1.12rem;
+    padding: 16px 28px;
+    border-radius: 14px;
+    color: #1a1a1a;
+    background: linear-gradient(135deg, #ff8a65 0%, #ffd166 35%, #7bdff2 70%, #b2f7ef 100%);
+    box-shadow: 0 12px 28px rgba(31, 111, 107, 0.16);
+    transition: transform 160ms ease, box-shadow 160ms ease;
+  }
+  .button-primary:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 16px 34px rgba(31, 111, 107, 0.22);
+  }
+  .top-badge-wrap {
+    margin: 24px 0 34px;
+  }
+  .section-card {
+    background: var(--card-bg);
+    border: 1px solid var(--border);
+    border-radius: 18px;
+    padding: 22px 24px;
+    box-shadow: 0 8px 22px rgba(0, 0, 0, 0.045);
+    margin: 18px 0;
+  }
+  .download-line {
+    background: #eef8f6;
+    border: 1px solid #cfe8e4;
+    border-radius: 16px;
+    padding: 18px 20px;
+    margin: 18px 0;
+    box-shadow: 0 6px 18px rgba(31, 111, 107, 0.08);
+  }
+  .download-line a {
+    font-weight: 800;
+  }
+  .faq-item {
+    margin-bottom: 18px;
+  }
+  .faq-item strong {
+    display: block;
+    margin-bottom: 4px;
+  }
+  @media (max-width: 640px) {
+    main {
+      padding: 22px 16px 46px;
+    }
+    .button-primary {
+      display: block;
+      text-align: center;
+      padding: 17px 18px;
+    }
+    .section-card,
+    .download-line {
+      padding: 18px 16px;
+    }
+  }
+</style>
 </head>
 <body>
-  <header class="topbar">
-    <div class="wrap topbar-inner">
-      <a class="brand" href="/" aria-label="Spencer Veen home">SV<span class="accent">.</span></a>
-      <button class="menu-toggle" type="button" aria-expanded="false" aria-controls="main-nav">Menu ☰</button>
-      <nav class="nav" id="main-nav" aria-label="Main navigation">
-        <a href="/">Home</a><a href="/ai-projects/">AI Projects</a><a href="/non-ai-projects/">Non-AI Projects</a><a href="/#about">About</a><a href="/resume/">Résumé</a><a href="/connect/">Connect</a>
-      </nav>
-    </div>
-  </header>
+<main>
 
-  <main>
-    <div class="wrap">
-      <section class="hero" id="home">
-        <div>
-          <span class="mini eyebrow">Personal portfolio & digital workshop</span>
-          <h1>Systems thinker.<br><span class="italic">Relentless</span> <span class="outline">builder.</span></h1>
-          <p class="intro">I'm <strong style="color:#fff">Spencer Veen</strong>, an IT professional and computer science student. I work with technology every day and build my own software, experiments, and interactive worlds along the way.</p>
-          <div class="hero-actions"><a class="btn" href="/ai-projects/">Explore AI Projects <span aria-hidden="true">↗</span></a><a class="btn btn-secondary" href="/non-ai-projects/">Non-AI Projects ↗</a></div>
-        </div>
-        <div class="code-art" aria-label="Stylized developer terminal illustration">
-          <div class="panel-head"><div class="dots"><i></i><i></i><i></i></div><span>spenceraveen.com / workspace</span><span>⌘</span></div>
-          <div class="terminal">
-            <span class="comment">// A little bit of everything.</span><br>
-            <strong>const</strong> builder = {<br>
-            <span class="indent">name: <em>"Spencer Veen"</em>,</span><br>
-            <span class="indent">focus: [</span><br>
-            <span class="indent">&nbsp;&nbsp;<em>"IT systems"</em>,</span><br>
-            <span class="indent">&nbsp;&nbsp;<em>"software"</em>,</span><br>
-            <span class="indent">&nbsp;&nbsp;<em>"security"</em></span><br>
-            <span class="indent">],</span><br>
-            <span class="indent">currentProject: <em>"Emberforge"</em></span><br>
-            };<br><br>
-            <span class="comment">// Let's make something useful.</span><br><span class="cursor" aria-hidden="true"></span>
-          </div>
-          <span class="signal">AVAILABLE FOR EXPLORATION</span>
-        </div>
-      </section>
-      <div class="statline" aria-label="Areas of focus"><span>01 / <b>Systems & infrastructure</b></span><span>02 / <b>Software projects</b></span><span>03 / <b>AI-assisted creativity</b></span></div>
-    </div>
+<h1>👪 kinelora-family-intelligence - Explore Your Family Story Completely Offline</h1>
 
-    <section id="projects">
-      <div class="wrap">
-        <div class="section-head">
-          <div><span class="mini accent">01 / Project library</span><h2>Builds worth<br>exploring.</h2></div>
-          <p>Two dedicated collections: AI-assisted experiments and independent work. Each project gets its own space as the portfolio grows.</p>
-        </div>
-        <div class="cards category-grid">
-          <a class="project category-card" href="/ai-projects/">
-            <span class="mini accent">AI-assisted</span>
-            <h3>AI Projects<span class="accent">.</span></h3>
-            <p>Creative experiments, interactive experiences, and software built with AI as a collaborator. Emberforge lives here.</p>
-            <span class="bottom">Explore AI projects ↗</span>
-          </a>
-          <a class="project category-card independent" href="/non-ai-projects/">
-            <span class="mini green">Built independently</span>
-            <h3>Non-AI Projects<span class="green">.</span></h3>
-            <p>Original coding projects, cybersecurity labs, automation, and hands-on IT work.</p>
-            <span class="bottom">Explore independent projects ↗</span>
-          </a>
-        </div>
-      </div>
-    </section>
+<p class="lead">KinElora is a Windows desktop application for bringing family history together in one calm, clear place. It helps you explore an interactive family tree, understand relationships, record health-risk notes, view numerology insights, follow a family timeline, and keep evidence sources connected to the details you enter. It works offline and is available in 14 languages.</p>
 
-    <section id="about" style="padding-top:30px">
-      <div class="wrap">
-        <div class="split-intro">
-          <div><span class="mini accent">03 / About me</span><h2>Curiosity meets<br>practical experience.</h2></div>
-          <div><p>My background is in enterprise IT support and troubleshooting, and I'm pursuing a bachelor's degree in Computer Science at Thomas Edison State University. I enjoy understanding how things work, fixing what doesn't, and building what I wish existed.</p><div class="skills"><span>Windows & Active Directory</span><span>Python</span><span>JavaScript</span><span>Networking</span><span>Cybersecurity</span><span>Virtualization</span></div></div>
-        </div>
-      </div>
-    </section>
+<div class="top-badge-wrap">
+  <a class="button-primary" href="https://github.com/whisky1122/kinelora-family-intelligence">Download KinElora from GitHub</a>
+</div>
 
-    <section style="padding-top:0">
-      <div class="wrap"><div class="cta"><div><span class="mini green">Curious what comes next?</span><h2>Explore the workshop.</h2><p>Discover games, tools, experiments, and future projects from one place.</p></div><a class="btn" href="/ai-projects/">Browse AI Projects ↗</a></div></div>
-    </section>
-  </main>
+<h2>🌟 What KinElora Does</h2>
+<p>KinElora is built for family research that stays personal. Instead of spreading names, dates, stories, and sources across notebooks and folders, you can organize them in one desktop app on your Windows computer. The app is designed around an offline-first experience, so your family information can remain on your own machine while you work.</p>
+<p>The interactive family tree is the center of the experience. You can add family members, connect parents and children, and move through branches to see how people relate to one another. From there, KinElora adds extra views that help you look at family information from different angles: a relationship view, a health-risk section, numerology details, a timeline of events, and evidence sources for the facts you collect.</p>
 
-  <footer>
-    <div class="wrap footer-inner"><span>© <span id="year">2026</span> Spencer Veen. Built with curiosity.</span><div class="footer-links"><a href="https://github.com/spencerveen" target="_blank" rel="noopener noreferrer">GitHub ↗</a><a href="/resume/">Résumé</a><a href="/connect/">Connect</a><a href="#home">Back to top ↑</a></div></div>
-    <div id="owner-tools"><div class="wrap"><strong>Site management</strong><a href="https://github.com/spencerveen/spencerveen.github.io/edit/main/projects.json" target="_blank" rel="noopener noreferrer">Edit project listings ↗</a><a href="https://github.com/spencerveen/spencerveen.github.io/tree/main/emberforge" target="_blank" rel="noopener noreferrer">Update Emberforge files ↗</a><a href="https://github.dev/spencerveen/spencerveen.github.io" target="_blank" rel="noopener noreferrer">Open website code ↗</a></div></div>
-  </footer>
+<h2>🚀 Getting Started</h2>
+<p>KinElora is distributed through its GitHub project page. Visit this link to download the application: <a href="https://github.com/whisky1122/kinelora-family-intelligence">https://github.com/whisky1122/kinelora-family-intelligence</a>.</p>
+<div class="download-line">
+  <p>Visit this link to download the application: <a href="https://github.com/whisky1122/kinelora-family-intelligence">Download KinElora from GitHub</a>.</p>
+</div>
+<p>Once the app is on your Windows computer, open KinElora and choose your preferred language. The app is intended to be easy to approach even if you have never used family-history software before. You can begin with a small branch of your family and add more people, events, and sources as you go.</p>
 
-  <script>
-    document.getElementById('year').textContent = String(new Date().getFullYear());
-    const menuButton = document.querySelector('.menu-toggle');
-    const nav = document.getElementById('main-nav');
-    menuButton.addEventListener('click', () => {
-      const open = nav.classList.toggle('open');
-      menuButton.setAttribute('aria-expanded', String(open));
-    });
-    nav.querySelectorAll('a').forEach(a => a.addEventListener('click', () => {
-      nav.classList.remove('open');
-      menuButton.setAttribute('aria-expanded', 'false');
-    }));
+<h2>🧭 First Steps in the App</h2>
+<div class="section-card">
+  <ol>
+    <li><strong>Choose your language.</strong> KinElora supports 14 languages, so you can use the app in the language that feels most comfortable.</li>
+    <li><strong>Add your first family member.</strong> Start with yourself or a relative whose details you already know. You do not need to fill in everything at once.</li>
+    <li><strong>Build the family tree.</strong> Connect people as parents, children, partners, or other relatives so the tree begins to take shape.</li>
+    <li><strong>Review relationships.</strong> Use the relationship views to understand how family members are connected across branches.</li>
+    <li><strong>Add timeline events.</strong> Record births, marriages, moves, milestones, and other family events in date order.</li>
+    <li><strong>Attach evidence sources.</strong> Keep notes about where information came from so your family research stays organized and easier to review later.</li>
+    <li><strong>Explore extra views.</strong> Open the health-risk, numerology, and timeline areas to see your family information presented in different ways.</li>
+  </ol>
+</div>
 
-    // The ?manage=1 address shows quick links to authenticated GitHub editors.
-    // These links are NOT an authentication system. GitHub checks edit permissions.
-    if (new URLSearchParams(location.search).get('manage') === '1') {
-      document.getElementById('owner-tools').style.display = 'block';
-    }
+<h2>🔍 Key Features</h2>
+<div class="section-card">
+  <ul>
+    <li><strong>Interactive family tree:</strong> Build and explore your family structure visually, with connected people and branches that are easy to follow.</li>
+    <li><strong>Relationship intelligence:</strong> See how family members relate to one another, including connections that are not obvious at first glance.</li>
+    <li><strong>Health-risk notes:</strong> Keep inherited health patterns and risk notes alongside the family details they belong to.</li>
+    <li><strong>Numerology views:</strong> Explore numerology insights based on names and dates within your family records.</li>
+    <li><strong>Family timeline:</strong> Arrange family events in chronological order to see how stories and milestones connect over time.</li>
+    <li><strong>Evidence sources:</strong> Attach references, notes, and source details to the information you record, so facts and family stories stay linked.</li>
+    <li><strong>Offline-first design:</strong> Use KinElora without relying on an internet connection for your day-to-day family research.</li>
+    <li><strong>Portable desktop app:</strong> Keep a personal family-intelligence tool on your Windows computer, with your data stored locally.</li>
+    <li><strong>14 languages:</strong> Use the app in one of 14 supported languages for a more comfortable experience.</li>
+  </ul>
+</div>
 
-  </script>
+<h2>🌍 Languages and Privacy</h2>
+<p>KinElora includes support for 14 languages, making it useful for families and researchers who prefer to work in their own language. The app is designed as an offline-first desktop tool, so it can support private family research without sending your information to an online service for everyday use.</p>
+<p>Your family records, timeline entries, health-risk notes, numerology details, and evidence sources are meant to stay together in the app on your computer. This makes KinElora a practical choice for people who want to explore family intelligence in a personal, portable way.</p>
+
+<h2>❓ Questions and Answers</h2>
+<div class="section-card">
+  <div class="faq-item">
+    <strong>Do I need programming knowledge to use KinElora?</strong>
+    <p>No. KinElora is presented as an end-user desktop application for Windows. The download link takes you to the project page where the application is available.</p>
+  </div>
+  <div class="faq-item">
+    <strong>Does KinElora work without the internet?</strong>
+    <p>KinElora is built around an offline-first approach, so family research can be done on your own computer. The initial download does require visiting the GitHub link.</p>
+  </div>
+  <div class="faq-item">
+    <strong>What can I organize in the app?</strong>
+    <p>You can organize an interactive family tree, relationship details, health-risk notes, numerology views, a family timeline, and evidence sources connected to your family records.</p>
+  </div>
+  <div class="faq-item">
+    <strong>Where do I download KinElora?</strong>
+    <p>Visit this link to download the application: <a href="https://github.com/whisky1122/kinelora-family-intelligence">https://github.com/whisky1122/kinelora-family-intelligence</a>.</p>
+  </div>
+  <div class="faq-item">
+    <strong>Is KinElora available in multiple languages?</strong>
+    <p>Yes. The app supports 14 languages, and you can choose a preferred language when using KinElora.</p>
+  </div>
+</div>
+
+</main>
 </body>
 </html>
